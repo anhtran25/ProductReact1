@@ -1,0 +1,30 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": [
+    {
+      "name": "typicode"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Bánh Bao thịt",
+      "image": "https://cdn.tgdd.vn/Files/2019/11/18/1219773/cach-lam-banh-bao-don-gian-tai-nha-bang-bot-pha-san-ngon-hon-ca-ngoai-tiem-202107302159326616.jpg",
+      "desc": "Banh bao nhân thịt trứng cút ",
+      "price": "15001"
+    }
+  ]
+}
