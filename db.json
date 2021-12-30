@@ -25,6 +25,13 @@
       "image": "https://cdn.tgdd.vn/Files/2019/11/18/1219773/cach-lam-banh-bao-don-gian-tai-nha-bang-bot-pha-san-ngon-hon-ca-ngoai-tiem-202107302159326616.jpg",
       "desc": "Banh bao nhân thịt trứng cút ",
       "price": "15001"
+    },
+    {
+      "name": "Bánh sinh nhật size XL",
+      "image": "http://res.cloudinary.com/dr0xnhjcg/image/upload/v1640875949/szzwdmv8ahoklzdydstv.jpg",
+      "price": "1000",
+      "desc": "Bánh sinh nhật",
+      "id": 2
     }
   ]
 }

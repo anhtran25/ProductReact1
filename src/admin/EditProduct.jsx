@@ -3,6 +3,9 @@ import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { read } from "../api/productAPI";
+import { toast } from 'react-toastify';
+import UploadImage from "./UploadImage";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EditProduct = (props) => {
   
@@ -24,71 +27,87 @@ const EditProduct = (props) => {
       reset(response.data);
     });
   }, [id, reset]);
-  const onSubmit = (data) => {
+  // const onSubmit = (data) => {
+  //   props.onUpdate({ id, ...data });
+  // };
+  const onSubmit = async (data) => {
+ 
+    await UploadImage(data.image[0]).then((response) => {
+        data.image = response.url;
+    });
     props.onUpdate({ id, ...data });
+   
+};
+  const mystyle = {
+    color: "red",
+  
+    padding: "10px",
+    fontFamily: "Arial"
   };
  
   const addProductForm = () => {
     return (
-      < div className="contai">
-      <form classname="mf" onSubmit={handleSubmit(onSubmit)} className="form-update">
+      < div className="container">
+      <form  onSubmit={handleSubmit(onSubmit)}>
+        <div className="mb">
         <h2>Cập nhật sản phẩm</h2>
-        <div class="userName">
+        <div class="mb-3">
         <Form.Group className="mb-1" controlId="formBasicEmail">
-        <Form.Label id="">Tên sản phẩm</Form.Label> 
+        <label>Tên sản phẩm: </label> 
         <input
           type="text"
-          classname="userName"
+          classname="form-control"
           placeholder="Ten san pham"
           {...register("name", { required: true })}
           defaultValue={products.name}
         />
-        {errors.name && <p>Bạn chưa nhập tên</p>}
+        {errors.name && <p style={mystyle}>Bạn chưa nhập tên</p>}
         </Form.Group>
         </div>
-        <div class="userName">
+        <div class="mb-3">
           
         <img  width={200} src={products.image}/>
         <input
-          type="text"
-          classname="image"
-          placeholder="Ảnh san pham"
+          type="file"
+          classname="form-img"
+          
           {...register("image", { required: true })}
           defaultValue={products.image}
         />     
-        {errors.image && <p>Bạn chưa chọn ảnh</p>}
+        
         </div>
-        <div class="userName">
+        <div class="mb-3">
         <Form.Group className="mb-1" controlId="formBasicEmail">
-        <Form.Label>Giá sản phẩm</Form.Label> 
+        <label>Giá sản phẩm: </label> 
         <input
           type="number"
-          classname="userName"
+          classname="form-control"
           placeholder="Gia san pham"
           {...register("price", { required: true })}
           defaultValue={products.price}
         />
-        {errors.price && <p>Bạn chưa nhập giá</p>}
+        {errors.price && <p style={mystyle}>Bạn chưa nhập giá</p>}
         </Form.Group>
         </div>
         
-        <div class="userName">
+        <div class="mb-3">
         <Form.Group className="mb-1" controlId="formBasicEmail">
-        <Form.Label id="">Thông tin sản phẩm</Form.Label>                  
+        <label id="">Thông tin sản phẩm</label>                  
         <textarea
         cols="30" rows="5"
           type="text"
-          className="texta"
+          className="form-control"
           placeholder="Thông tin san pham"
           {...register("desc", { required: true })}
           defaultValue={products.desc}
         />      
-        {errors.name && <p>Bạn chưa thông tin</p>}
+        {errors.desc && <p style={mystyle}>Bạn chưa thông tin sản phẩm</p>}
         </Form.Group>
         </div>
 
         <button >Cập nhật</button>
         <button onClick={() => navigate(-1)}>Quay lai</button>
+        </div>
       </form>
       </div>
     );
